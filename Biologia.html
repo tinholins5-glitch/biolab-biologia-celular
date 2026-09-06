@@ -84,4 +84,15 @@ home();
 let touchStartX=0;
 document.addEventListener('touchstart',event=>{if(tab==='cards')touchStartX=event.changedTouches[0].screenX},{passive:true});
 document.addEventListener('touchend',event=>{if(tab!=='cards')return;const delta=event.changedTouches[0].screenX-touchStartX;if(Math.abs(delta)<55)return;ci=Math.max(0,ci+(delta<0?1:-1));study()},{passive:true});
-</script></body></html>
+</script>
+<script>
+document.addEventListener('click',event=>{
+ const target=event.target.closest('[data-subject]');
+ if(!target)return;
+ event.preventDefault();
+ event.stopPropagation();
+ modules(target.dataset.subject);
+ go('modules');
+},true);
+</script>
+</body></html>
